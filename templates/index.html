@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HansKingdom</title>
+    <link rel="stylesheet" type="text/css" href="./static/styles.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+    {% include "online_status.html" ignore missing %}
+  </head>
+  <body>
+    <header>
+        <welcome>
+      <h1 id="dash-name">Welcome, {{user}}!<sup><p id="status">online</p></sup></h1>
+        </welcome>
+    </header>
+    {% include "navigation.html" ignore missing %}
+    <main>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, massa eu lacinia suscipit, dolor arcu feugiat urna, sit amet volutpat magna risus vel justo.</p>
+      <p>Mauris tempus turpis at risus auctor, a ullamcorper nisl eleifend. In commodo bibendum tellus sed vestibulum. Sed ut commodo risus, at sagittis est.</p>
+      <p>Donec malesuada elit vel elit fringilla hendrerit. Sed ut lobortis massa. Nulla facilisi. Nulla facilisi. Nam ultricies lacus vitae nibh consectetur rutrum.</p>
+    </main>
+    {% include "footer.html" ignore missing %}   
+  </body>
+</html>

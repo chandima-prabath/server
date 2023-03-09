@@ -1,0 +1,36 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://192.168.65.221:5000');
+
+  socket.on('connect', function() {
+      var statusElem = document.getElementById('status');
+      console.log('Connected to server');
+      statusElem.innerHTML = "Online";
+      statusElem.style.color = '#08ad05';
+  });
+
+  socket.on('disconnect', function() {
+      console.log('Disconnected from server');
+      setStatus('Offline');
+  });
+
+  socket.on('server_signal', function(data) {
+      console.log('Received server signal:', data);
+      setStatus('Online');
+  });
+
+  function setStatus(status) {
+      var statusElem = document.getElementById('status');
+      statusElem.innerHTML = status;
+      if (status === 'Offline') {
+          statusElem.style.color = 'red';
+      } else {
+          statusElem.innerHTML = "Online";
+          statusElem.style.color = 'green';
+      }
+  }
+
+  setTimeout(function() {
+      setStatus('Offline');
+  }, 90000);  // Display offline alert after 1 min 30 sec of no signal
+</script>

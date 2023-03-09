@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./static/styles.css">
+  <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+  <link rel="manifest" href="static/site.webmanifest">
+  <title>Dashboard</title>
+  {% include "online_status.html" ignore missing %}
+</head>
+<welcome>
+  <h1 id="dash-name">DASHBOARD<sup><p id="status">online</p></sup></h1>
+</welcome>
+<body>
+  {% include "navigation.html" ignore missing %}
+  <div id="dashboard">
+  {% include "dashboard_account.html" ignore missing %}
+  </div>
+  {% include "footer.html" ignore missing %}
+</body>
+</html>

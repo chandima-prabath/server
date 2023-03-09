@@ -1,0 +1,138 @@
+<table class="dashboard-user-info">
+    <caption>ACCOUNT</caption>
+    <tr>
+      <th class="dash">Username</th>
+      {% if user %}
+        <td class="dash">
+          <p id="username">{{ user }}</p>
+          <input type="text" id="edit-username" name="edit-username" style="display:none;">
+          <input type="submit" value="change" id="change-username-btn" onclick="changeUsername()" style="display:none;">
+        </td>
+        <td class="edit"><a href="#" onclick="editUsername()"><img id="edit-user-ico" class="edit" src="static/edit_icon.svg" alt=""></a>
+          <a id="cancel-user-ico" style="display:none;" href="#" onclick="cancelEditUsername()"><img class="edit" src="static/cancel_icon.svg" alt=""></a>
+        </td>
+      {% endif %}
+    </tr>
+    <tr>
+      <th class="dash">Password</th>
+      {% if user %}
+        <td class="dash">
+          <p id="password">{{ password }}</p>
+          <input type="password" id="edit-password" name="edit-password" style="display:none;">
+          <input type="submit" value="change" id="change-password-btn" onclick="changePassword()" style="display:none;">
+        </td>
+        <td class="edit"><a href="#" onclick="editPassword()"><img id="edit-pass-ico" class="edit" src="static/edit_icon.svg" alt=""></a>
+          <a id="cancel-pass-ico" style="display:none;" href="#" onclick="cancelEditPassword()"><img class="edit" src="static/cancel_icon.svg" alt=""></a>
+        </td>
+      {% endif %}
+    </tr>
+  </table>
+  
+  <script>
+  function editUsername() {
+    var username = document.getElementById("username");
+    var editUsername = document.getElementById("edit-username");
+    var changeUsernameBtn = document.getElementById("change-username-btn");
+    var editUserIco = document.getElementById("edit-user-ico");
+    var cancelUserIco = document.getElementById("cancel-user-ico");
+    username.style.display = "none";
+    editUserIco.style.display = "none";
+    editUsername.style.display = "block";
+    changeUsernameBtn.style.display = "block";
+    cancelUserIco.style.display = "block";
+    editUsername.value = username.innerHTML;
+  }
+  
+  function editPassword() {
+    var password = document.getElementById("password");
+    var editPassword = document.getElementById("edit-password");
+    var changePasswordBtn = document.getElementById("change-password-btn");
+    var editPassIco = document.getElementById("edit-pass-ico");
+    var cancelPassIco = document.getElementById("cancel-pass-ico");
+    password.style.display = "none";
+    editPassIco.style.display = "none";
+    editPassword.style.display = "block";
+    changePasswordBtn.style.display = "block";
+    cancelPassIco.style.display = "block";
+  }
+  //cancel functions
+
+  function cancelEditUsername() {
+    var username = document.getElementById("username");
+    var editUsername = document.getElementById("edit-username");
+    var changeUsernameBtn = document.getElementById("change-username-btn");
+    var editUserIco = document.getElementById("edit-user-ico");
+    var cancelUserIco = document.getElementById("cancel-user-ico");
+    username.style.display = "block";
+    editUserIco.style.display = "block";
+    editUsername.style.display = "none";
+    changeUsernameBtn.style.display = "none";
+    cancelUserIco.style.display = "none";
+    editUsername.value = username.innerHTML;
+  }
+  
+  function cancelEditPassword() {
+    var password = document.getElementById("password");
+    var editPassword = document.getElementById("edit-password");
+    var changePasswordBtn = document.getElementById("change-password-btn");
+    var editPassIco = document.getElementById("edit-pass-ico");
+    var cancelPassIco = document.getElementById("cancel-pass-ico");
+    password.style.display = "block";
+    editPassIco.style.display = "block";
+    editPassword.style.display = "none";
+    changePasswordBtn.style.display = "none";
+    cancelPassIco.style.display = "none";
+  }
+
+//functions to post the changes
+
+function changeUsername() {
+var  editUsername=document.getElementById("edit-username");
+var newUsername = editUsername.value;
+  fetch('/update-username', {
+    method: 'POST',
+    body: JSON.stringify({"username": newUsername}),
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(response => {
+    if (response.ok) {
+      // username updated successfully, update the UI accordingly
+      // Reload the current page
+      location.reload();
+
+    } else {
+      // handle error
+      alert("username change Error")
+    }
+  })
+  .catch(error => {
+    // handle error
+    alert(error)
+});
+}
+
+function changePassword() {
+var  editPassword=document.getElementById("edit-password");
+var newPassword = editPassword.value;
+  fetch('/update-password', {
+    method: 'POST',
+    body: JSON.stringify({"password": newPassword}),
+    headers: {'Content-Type': 'application/json'}
+  })
+  .then(response => {
+    if (response.ok) {
+      // username updated successfully, update the UI accordingly
+      // Reload the current page
+      location.reload();
+
+    } else {
+      // handle error
+      alert("password change Error")
+    }
+  })
+  .catch(error => {
+    // handle error
+    alert(error)
+});
+}
+  </script>

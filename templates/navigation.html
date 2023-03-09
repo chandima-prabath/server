@@ -1,0 +1,14 @@
+<div class="nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+      {% if not dash %}
+      <li><a href="login">LogIn</a></li>
+      {% endif %}
+      <li><a href={{logtype}}>{{logtype}}</a></li>
+      {% if dash %}
+      <li><a href="dashboard">Dashboard</a></li>
+      {% endif %}
+    </ul>
+  </div>

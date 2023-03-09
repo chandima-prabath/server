@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./static/styles.css">
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+    <title>Login</title>
+  </head>
+  <body>
+    <h1 id="login">Login</h1>
+    {% if message %}
+      <p class="error">{{ message }}</p>
+    {% endif %}
+    <form method="post" action="{{ url_for('login') }}">
+      <label for="username">Username:</label><br>
+      <input type="text" id="username" name="username"><br>
+      <br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br>
+      <br>
+      <input type="submit" value="Login">
+    </form>
+    {% include "footer.html" ignore missing %}
+  </body>
+</html>
