@@ -1,5 +1,15 @@
 <table class="dashboard-user-info">
+  <br><br>
+  <thead>
     <caption>ACCOUNT</caption>
+    <br>
+  </thead>
+    <tbody>
+    {% if profile_pic %}
+    <tr id="profile-pic-container">
+      <td id="profile-pic-td" colspan="3"><img id="profile-pic" src="{{ profile_pic }}" alt=""></td><br>
+    </tr>
+    {% endif %}
     <tr>
       <th class="dash">Username</th>
       {% if user %}
@@ -26,6 +36,10 @@
         </td>
       {% endif %}
     </tr>
+    <tr>
+      <td colspan="3"><button id="delete-account" onclick="deleteAccount()" >DELETE ACCOUNT</button></td>
+    </tr>
+  </tbody>
   </table>
   
   <script>
@@ -135,4 +149,10 @@ var newPassword = editPassword.value;
     alert(error)
 });
 }
+
+function deleteAccount() {
+  window.location.pathname = '/delete-account';
+
+}
+
   </script>
